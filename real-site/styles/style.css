@@ -1,23 +1,51 @@
 body {
     margin: 0; /* 移除默认的边距 */
     padding: 0; /* 移除默认的内边距 */
-    background-image: url("../images/background.jpg"); /* 设置背景图像的路径 */
-    background-position: center center; /* 使背景图像居中显示 */
-    background-repeat: no-repeat; /* 不重复背景图像 */
-    background-attachment: fixed; /* 固定背景图像，不随页面滚动 */
-    background-size: cover; /* 使背景图像完全覆盖整个页面，可能会裁剪图像 */
+    background-color: #f1f1f1;
+}
+ul,ol{
+    list-style-type: none; /* 移除列表项的默认标记 */
+    list-style: none;/* 去掉默认圆点 */
+    margin: 0; /* 移除默认的边距 */
+    padding: 0; /* 移除默认的内边距 */
+}
+a {
+    color:#b8b8b8;
+}
+a:visited{
+    color:black;
+}
+a:hover,
+a:focus{
+    color:#cbcbcb;
+    text-decoration: none;
+}
+a:active {
+    color:#a7a7a7;
+}
+.container {
+    grid-column: 1 / 16;
+    grid-row: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .menu-button {
     width: 100px; /* 或者您想要设置的宽度 */
-    padding: 10px; /* 按钮的内边距 */
-    border: none; /* 移除边框 */
-    background-color: #ffffff; /* 按钮的背景颜色 */
+    padding: 8px 10px; /* 按钮的内边距 */
+    border-top: 2px solid transparent; /* 上边框2px宽，透明 */
+    border-bottom: 2px solid transparent; /* 下边框2px宽，透明 */
+    border-left: 0; /* 移除左边框 */
+    border-right: 0; /* 移除右边框 */
+    background-color: transparent; /* 透明设置 */
     color: rgb(0, 0, 0); /* 文本颜色 */
     font-size: 16px; /* 文本字体大小 */
     cursor: pointer; /* 鼠标悬停时显示指针样式 */
+    margin-block-start: 0.83em;/*上外边距*/
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-top-color 0.5s ease, border-bottom-color 0.5s ease;/*产生慢速的边框效果*/
 }
 .menu-button:hover {
-    background-color: #a2a8ad; /* 鼠标悬停时的背景颜色变化 */
+    background-color: #a7a7a7; /* 鼠标悬停时的背景颜色变化要改 */
+    border-top: 2px solid black; /* 鼠标悬停时添加2像素高的黑色实线上下边框 */
+    border-bottom: 2px solid black;
 }
 .main-menu {
     display: flex; /* 使用flex布局 */
@@ -28,14 +56,12 @@ body {
     list-style: none;/* 去掉默认圆点 */
     margin: 0;/* 去掉外边距 */
     padding: 0;/* 去掉内边距 */
-}
-.main-menu-list{
+    margin-block-start: 0em;
     display: list-item;/* 保持列表形态 */
     display: none;/* 默认不显示 */
 }
 /* 当按钮被悬停时，列表显示 */
 .menu-button:hover + .main-menu-list,
-.menu-button:focus + .main-menu-list,
 .main-menu-list:hover
 {
     display: block;
@@ -43,20 +69,125 @@ body {
 }
 .menu-button-list {
     width: 100px; /* 或者您想要设置的宽度 */
-    padding: 10px; /* 按钮的内边距 */
-    border: none; /* 移除边框 */
-    background-color: #ffffff; /* 按钮的背景颜色 */
+    padding: 8px 10px; /* 按钮的内边距 */
+    border-top: 2px solid transparent; /* 上边框2px宽，透明 */
+    border-bottom: 2px solid transparent; /* 下边框2px宽，透明 */
+    border-left: 0; /* 移除左边框 */
+    border-right: 0; /* 移除右边框 */
+    background-color: #f1f1f1; /* 背景颜色 */
     color: rgb(0, 0, 0); /* 文本颜色 */
     font-size: 16px; /* 文本字体大小 */
     cursor: pointer; /* 鼠标悬停时显示指针样式 */
     text-decoration: none;/* 删除格式 */
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-top-color 0.5s ease, border-bottom-color 0.5s ease;/*产生慢速的边框效果*/
 }
 .menu-button-list:hover {
-    background-color: #a2a8ad; /* 鼠标悬停时的背景颜色变化 */
+    background-color: #cbcbcb; /* 鼠标悬停时的背景颜色变化要改 */
+    border-top: 2px solid black; /* 鼠标悬停时添加2像素高的黑色实线上下边框 */
+    border-bottom: 2px solid black;
+}
+.menu-button-list:active {
+    transition: all 0s;/*取消渐变*/
+    background-color: #a7a7a7; /* 鼠标点击时的背景颜色变化要改 */
+    border-top: 2px solid black; /* 鼠标悬停时添加2像素高的黑色实线上下边框 */
+    border-bottom: 2px solid black;
 }
 .container {
     display: flex;
 }
 .main-nav {
     display: flex;
+}
+.main-menu-search{
+    position: absolute; /* 绝对定位 */
+    right: 0; /* 定位到右侧 */
+    width: 200px; /* 定义元素的宽度 */
+}
+.main-menu-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .main-menu-search input[type="search"] {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .main-menu-search input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e1e1e1;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .main-menu-search input[type="submit"]:hover {
+    background-color: #cbcbcb;
+  }
+  .main-menu-search input[type="submit"]:active {
+    background-color: #a7a7a7;
+  }
+main{
+    display: grid;
+    margin: 0 5%;
+    grid-template-columns: repeat(15, 1fr);/*设置了16列*/
+    grid-row-gap: 20px;/*设置行间距*/
+    grid-column-gap: 10px;/*设置列间距*/
+}
+.main-main {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);/*设置了12列*/
+    grid-column: 4 / 13;
+    grid-row: 2;
+}
+.body-paragrath {
+    grid-column: 1 / 12;
+    grid-row: 1 / 4;
+}
+.body-p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+.main-lastest-test {
+    grid-column: 8 / 12;
+    grid-row: 1;
+}
+.main-hot-list {
+    grid-column: 8 / 12;
+    grid-row: 2;
+}
+.white-box {
+    display: inline-block;
+    width: 16vw;
+    height: 12vh;
+    margin-bottom: 15px;
+    background-color: white;  /* 设置背景颜色为白色 */
+    border-radius: 10px;  /* 设置圆角半径为10像素 */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);  /* 添加阴影，水平偏移4像素，垂直偏移4像素，模糊半径10像素，颜色为半透明的黑色 */
+}
+.main-hot-news {
+    grid-column: 8 / 12;
+    grid-row: 3;
+    width: 100%; /* 容器宽度为父容器的100% */
+}
+.main-aside-left {
+    grid-column: 1 / 4;
+    grid-row: 2;
+}
+.main-aside-right{
+    grid-column: 13/16;
+    grid-row: 2;
+}
+footer{
+    grid-column: 1 / 16;
+    grid-row: 3;
 }
